@@ -35,13 +35,13 @@ def post_upload_mips_gate_record():
         filepath = ''
         req_info = decode_input(json.loads(request.data))
         image_base64 = req_info['checkPic']
-        print(f'Got visitor photo ({image_base64[:10]})...')
+        print(f'->> Got visitor photo ({image_base64[:10]})...')
         image_decoded = base64.b64decode(parse.unquote(image_base64))
-        print('Creating badge...')
+        print('->> Creating badge...')
         badge_image = badge_factory.create_badge(req_info['name'],
                                                  datetime.now().strftime('%m/%d/%Y'),
                                                  image_decoded)
-        print(f'Created badge with {badge_image.count()} bytes...')
+        print(f'->> Created badge with {badge_image.count()} bytes...')
         image_buffer = BytesIO(badge_image)
         with Image.open(image_buffer) as fil_image:
             filepath = IMG_FOLDER + req_info['name'] \
@@ -49,13 +49,13 @@ def post_upload_mips_gate_record():
                        + '.png'
             # image_format = fil_image.format
             # image_mode = fil_image.mode
-            print('Saving badge image...')
+            print('->> Saving badge image...')
             fil_image.save(filepath, 'PNG')
 
         print_command = 'brother_ql -m QL-800 -p ' + \
                         'usb://0x04f9:0x209b/000J0Z257065 ' + \
                         'print ' + filepath + ' -l 62'
-        print('Printed visitor badge...')
+        print('->> Printed visitor badge...')
         os.system(print_command)
         response[RETURN_CODE] = RETURN_CODE_SUCCESS
         response[RETURN_MSG] = RETURN_MSG_SUCCESS
