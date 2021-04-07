@@ -27,7 +27,7 @@ def create_badge(name: str, print_date: str, face_photo: bytes) -> bytes:
 
     badge_rotate = badge.rotate(90, expand=True)
     badge_dither = badge_rotate.convert(mode='1', dither=Image.FLOYDSTEINBERG)
-    badge_dither.show()
+    # badge_dither.show()
     badge_buffer = BytesIO()
     badge_dither.save(badge_buffer, 'PNG')
     return badge_buffer.getvalue()
