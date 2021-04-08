@@ -9,7 +9,6 @@ from PIL import Image, ImageFile
 from io import BytesIO
 import platform
 import badge_factory
-# import local_image
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 app = Flask(__name__)
@@ -21,7 +20,6 @@ RETURN_MSG_SUCCESS = 'successful push'
 RETURN_MSG_FAILURE = 'push failed'
 IMG_FOLDER = ''
 if platform.system() == 'Linux':
-    # IMG_FOLDER = '~/brother_ql_800/images/'
     IMG_FOLDER = 'images/'
 elif platform.system() == 'Windows':
     IMG_FOLDER = 'C:\\SourceCode\\Python\\brother_ql_800\\images\\'
@@ -38,7 +36,7 @@ def post_upload_mips_gate_record():
         image_base64 = req_info['checkPic']
         print(f'->> Got visitor photo ({image_base64[:10]})...')
         image_decoded = base64.b64decode(parse.unquote(image_base64))
-        print('->> Creating badge...')
+        # print('->> Creating badge...')
         badge_image = badge_factory.create_badge(req_info['name'],
                                                  datetime.now().strftime('%m/%d/%Y'),
                                                  image_decoded)
@@ -48,8 +46,6 @@ def post_upload_mips_gate_record():
             filepath = IMG_FOLDER + req_info['name'] \
                        + datetime.now().strftime('_%Y%m%d_%H%M%S') \
                        + '.png'
-            # image_format = fil_image.format
-            # image_mode = fil_image.mode
             print('->> Saving badge image...')
             fil_image.save(filepath, 'PNG')
 

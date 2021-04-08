@@ -8,7 +8,7 @@ import urllib.parse
 
 IMG_FOLDER = ''
 if platform.system() == 'Linux':
-    IMG_FOLDER = '~/brother_ql_800/images/'
+    IMG_FOLDER = 'images/'
 elif platform.system() == 'Windows':
     IMG_FOLDER = 'C:\\SourceCode\\Python\\brother_ql_800\\images\\'
 

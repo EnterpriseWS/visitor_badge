@@ -1,0 +1,11 @@
+[Unit]
+Description=Linux daemon service for printing visitor badges
+After=multi-user.target
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/bin/python3 /home/ubuntu/test.py
+
+[Install]
+WantedBy=multi-user.target
