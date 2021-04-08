@@ -21,7 +21,8 @@ RETURN_MSG_SUCCESS = 'successful push'
 RETURN_MSG_FAILURE = 'push failed'
 IMG_FOLDER = ''
 if platform.system() == 'Linux':
-    IMG_FOLDER = '~/brother_ql_800/images/'
+    # IMG_FOLDER = '~/brother_ql_800/images/'
+    IMG_FOLDER = 'images/'
 elif platform.system() == 'Windows':
     IMG_FOLDER = 'C:\\SourceCode\\Python\\brother_ql_800\\images\\'
 
