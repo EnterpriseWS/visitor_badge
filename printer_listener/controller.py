@@ -41,7 +41,7 @@ def post_upload_mips_gate_record():
         badge_image = badge_factory.create_badge(req_info['name'],
                                                  datetime.now().strftime('%m/%d/%Y'),
                                                  image_decoded)
-        print(f'->> Created badge with {badge_image.count()} bytes...')
+        print(f'->> Created badge with {len(badge_image)} bytes...')
         image_buffer = BytesIO(badge_image)
         with Image.open(image_buffer) as fil_image:
             filepath = IMG_FOLDER + req_info['name'] \
