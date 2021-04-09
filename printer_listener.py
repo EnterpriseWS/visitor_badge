@@ -58,7 +58,7 @@ def post_upload_mips_gate_record():
             fil_image.save(filepath, 'PNG')
 
         with open(filepath, 'rb') as fp:
-            print_data = brother_ql.brother_ql_create.convert(BrotherQLRaster('QL-800'), fp, '62', dither=True)
+            print_data = brother_ql.brother_ql_create.convert(BrotherQLRaster('QL-800'), [fp], '62', dither=True)
             send(print_data, PRINTER_IDENTIFIER)
             print('->> Printed visitor badge...')
         # print_command = QL_FOLDER + 'brother_ql -m QL-800 -p ' + \
