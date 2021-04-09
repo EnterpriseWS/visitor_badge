@@ -1,4 +1,6 @@
-import os
+import sys
+sys.path.append('/home/ubuntu/.local/lib/python3.8/site-packages/')
+
 import json
 import base64
 from datetime import datetime
