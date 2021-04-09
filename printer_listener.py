@@ -9,7 +9,11 @@ from PIL import Image, ImageFile
 from io import BytesIO
 import platform
 import badge_factory
+import brother_ql
+from brother_ql.raster import BrotherQLRaster
+from brother_ql.backends.helpers import send
 ImageFile.LOAD_TRUNCATED_IMAGES = True
+
 
 app = Flask(__name__)
 RETURN_CODE_SUCCESS = 0
@@ -19,11 +23,13 @@ RETURN_MSG = 'msg'
 RETURN_MSG_SUCCESS = 'successful push'
 RETURN_MSG_FAILURE = 'push failed'
 IMG_FOLDER = ''
+QL_FOLDER = ''
+PRINTER_IDENTIFIER = 'usb://0x04f9:0x209b/000J0Z257065'
 if platform.system() == 'Linux':
-    QL_FOLDER = '/home/ubuntu/.local/bin/'
     IMG_FOLDER = 'images/'
+    # QL_FOLDER = '/home/ubuntu/.local/bin/'
+    # os.environ['PYTHONPATH'] = '/home/ubuntu/.local/lib/python3.8/site-packages/'
 elif platform.system() == 'Windows':
-    QL_FOLDER = ''
     IMG_FOLDER = 'C:\\SourceCode\\Python\\brother_ql_800\\images\\'
 
 
@@ -51,11 +57,13 @@ def post_upload_mips_gate_record():
             print('->> Saving badge image...')
             fil_image.save(filepath, 'PNG')
 
-        print_command = QL_FOLDER + 'brother_ql -m QL-800 -p ' + \
-                        'usb://0x04f9:0x209b/000J0Z257065 ' + \
-                        'print ' + filepath + ' -l 62'
+        print_data = brother_ql.brother_ql_create.convert(BrotherQLRaster('QL-800'), filepath, '62', dither=True)
+        send(print_data, PRINTER_IDENTIFIER)
         print('->> Printed visitor badge...')
-        os.system(print_command)
+        # print_command = QL_FOLDER + 'brother_ql -m QL-800 -p ' + \
+        #                 'usb://0x04f9:0x209b/000J0Z257065 ' + \
+        #                 'print ' + filepath + ' -l 62'
+        # os.system(print_command)
         response[RETURN_CODE] = RETURN_CODE_SUCCESS
         response[RETURN_MSG] = RETURN_MSG_SUCCESS
         return jsonify(response)
