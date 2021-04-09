@@ -26,7 +26,7 @@ IMG_FOLDER = ''
 QL_FOLDER = ''
 PRINTER_IDENTIFIER = 'usb://0x04f9:0x209b/000J0Z257065'
 if platform.system() == 'Linux':
-    IMG_FOLDER = 'images/'
+    IMG_FOLDER = './images/'
     # QL_FOLDER = '/home/ubuntu/.local/bin/'
     # os.environ['PYTHONPATH'] = '/home/ubuntu/.local/lib/python3.8/site-packages/'
 elif platform.system() == 'Windows':
