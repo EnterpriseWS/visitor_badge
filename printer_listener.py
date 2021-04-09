@@ -20,8 +20,10 @@ RETURN_MSG_SUCCESS = 'successful push'
 RETURN_MSG_FAILURE = 'push failed'
 IMG_FOLDER = ''
 if platform.system() == 'Linux':
+    QL_FOLDER = '/home/ubuntu/.local/bin/'
     IMG_FOLDER = 'images/'
 elif platform.system() == 'Windows':
+    QL_FOLDER = ''
     IMG_FOLDER = 'C:\\SourceCode\\Python\\brother_ql_800\\images\\'
 
 
@@ -49,7 +51,7 @@ def post_upload_mips_gate_record():
             print('->> Saving badge image...')
             fil_image.save(filepath, 'PNG')
 
-        print_command = 'brother_ql -m QL-800 -p ' + \
+        print_command = QL_FOLDER + 'brother_ql -m QL-800 -p ' + \
                         'usb://0x04f9:0x209b/000J0Z257065 ' + \
                         'print ' + filepath + ' -l 62'
         print('->> Printed visitor badge...')
