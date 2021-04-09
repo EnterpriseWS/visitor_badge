@@ -27,8 +27,6 @@ QL_FOLDER = ''
 PRINTER_IDENTIFIER = 'usb://0x04f9:0x209b/000J0Z257065'
 if platform.system() == 'Linux':
     IMG_FOLDER = './images/'
-    # QL_FOLDER = '/home/ubuntu/.local/bin/'
-    # os.environ['PYTHONPATH'] = '/home/ubuntu/.local/lib/python3.8/site-packages/'
 elif platform.system() == 'Windows':
     IMG_FOLDER = 'C:\\SourceCode\\Python\\brother_ql_800\\images\\'
 
@@ -61,10 +59,6 @@ def post_upload_mips_gate_record():
             print_data = brother_ql.brother_ql_create.convert(BrotherQLRaster('QL-800'), [fp], '62', dither=True)
             send(print_data, PRINTER_IDENTIFIER)
             print('->> Printed visitor badge...')
-        # print_command = QL_FOLDER + 'brother_ql -m QL-800 -p ' + \
-        #                 'usb://0x04f9:0x209b/000J0Z257065 ' + \
-        #                 'print ' + filepath + ' -l 62'
-        # os.system(print_command)
         response[RETURN_CODE] = RETURN_CODE_SUCCESS
         response[RETURN_MSG] = RETURN_MSG_SUCCESS
         return jsonify(response)
