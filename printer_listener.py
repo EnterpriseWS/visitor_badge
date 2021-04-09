@@ -54,7 +54,7 @@ def post_upload_mips_gate_record():
             filepath = IMG_FOLDER + req_info['name'] \
                        + datetime.now().strftime('_%Y%m%d_%H%M%S') \
                        + '.png'
-            print('->> Saving badge image...')
+            print(f'->> Saving badge image to {filepath}...')
             fil_image.save(filepath, 'PNG')
 
         print_data = brother_ql.brother_ql_create.convert(BrotherQLRaster('QL-800'), filepath, '62', dither=True)
