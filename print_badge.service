@@ -5,7 +5,13 @@ After=multi-user.target
 [Service]
 Type=simple
 Restart=always
-ExecStart=/usr/bin/python3 /home/ubuntu/visitor_badge/main
+KillSignal=SIGQUIT
+Type=notify
+StandardError=syslog
+ExecStart=uwsgi --http-socket 0.0.0.0:8080 \
+                --plugin python3 \
+                --chdir /home/ubuntu/visitor_badge \
+                --module main:app
 
 [Install]
 WantedBy=multi-user.target
