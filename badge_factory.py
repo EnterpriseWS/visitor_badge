@@ -7,9 +7,9 @@ BADGE_WIDTH = 384
 
 def create_badge(name: str, print_date: str, face_photo: bytes) -> bytes:
     print('->> Enter create_badge function...')
-    font_header = ImageFont.truetype("arial.ttf", 40)
-    font_name = ImageFont.truetype("arial.ttf", 35)
-    font_date = ImageFont.truetype("arial.ttf", 25)
+    font_header = ImageFont.truetype(".fonts/arial.ttf", 40)
+    font_name = ImageFont.truetype(".fonts/arial.ttf", 35)
+    font_date = ImageFont.truetype(".fonts/arial.ttf", 25)
     badge = Image.new('L', (BADGE_WIDTH, BADGE_HEIGHT), 'white')
     badge_canvas = ImageDraw.Draw(badge)
     badge_canvas.rectangle([(2, 2), (BADGE_WIDTH - 2, BADGE_HEIGHT - 2)], outline='gray', width=2)

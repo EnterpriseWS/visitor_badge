@@ -1,5 +1,7 @@
+import os
 import sys
-sys.path.append('/home/ubuntu/.local/lib/python3.8/site-packages/')
+if not os.environ.get('RUNNING_IN_DOCKER', False):
+    sys.path.append('/home/ubuntu/.local/lib/python3.8/site-packages/')
 
 import json
 import base64
