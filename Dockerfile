@@ -2,7 +2,7 @@
 FROM ubuntu:20.04
 
 RUN apt update -y && \
-    apt install -y python-pip3 && \
+    apt install -y python3-pip && \
     apt install -y ttf-mscorefonts-installer && \
     apt install -y uwsgi && \
     apt install -y uwsgi-plugin-python3
