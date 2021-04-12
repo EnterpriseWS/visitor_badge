@@ -1,6 +1,7 @@
 import os
 import sys
 if not os.environ.get('RUNNING_IN_DOCKER', False):
+    print('Running in OS...')
     sys.path.append('/home/ubuntu/.local/lib/python3.8/site-packages/')
 
 import json
