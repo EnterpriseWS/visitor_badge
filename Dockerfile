@@ -1,7 +1,8 @@
 # DO NOT run print_badge.service when this container is running
 FROM ubuntu:20.04 AS print_badge
 
-RUN apt install -y python3-pip
+RUN apt update -y && \
+    apt install -y python3-pip
     # *** No need to install fonts if provided in Python code
     # apt install -y ttf-mscorefonts-installer && \
     # apt install -y uwsgi && \
